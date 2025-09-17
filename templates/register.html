@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>➕ Register New Case</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0fdf4;
+            color: #333;
+            margin: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #a5d6a7;
+            border-radius: 4px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 16px;
+            background-color: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        button:hover {
+            background-color: #1b5e20;
+        }
+    </style>
+</head>
+<body>
+    <h2>➕ Register New Case</h2>
+    <form method="POST">
+        <label for="case_name">Case Name:</label>
+        <input type="text" name="case_name" required>
+
+        <label for="case_type">Case Type:</label>
+        <input type="text" name="case_type" required>
+
+        <label for="case_number">Case Number:</label>
+        <input type="text" name="case_number" required>
+
+        <label for="lawyer_assigned">Lawyer Assigned:</label>
+        <input type="text" name="lawyer_assigned" required>
+
+        <label for="status">Status:</label>
+        <select name="status" required>
+            <option value="">-- Select Status --</option>
+            <option value="Pending Hearing">Pending Hearing</option>
+            <option value="Sentenced">Sentenced</option>
+            <option value="Adjourned">Adjourned</option>
+            <option value="Trial Ongoing">Trial Ongoing</option>
+        </select>
+
+        <label for="next_hearing">Next Hearing Date:</label>
+        <input type="date" name="next_hearing">
+
+        <button type="submit">Register Case</button>
+    </form>
+</body>
+</html>
+
+
+

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head><title>Track File Movement</title></head>
+<body>
+<h1>Track File Movement</h1>
+<form method="POST">
+    <label for="case_number">Select Case:</label>
+    <select name="case_number" required>
+        {% for case in cases %}
+            <option value="{{ case.case_number }}">{{ case.case_title }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="from_dept">From Department:</label>
+    <input type="text" name="from_dept" required>
+
+    <label for="to_dept">To Department:</label>
+    <input type="text" name="to_dept" required>
+
+    <label for="remarks">Remarks:</label>
+    <textarea name="remarks" required></textarea>
+
+    <input type="submit" value="Track File">
+</form>
+
+</body>
+</html>

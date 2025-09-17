@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🔍 Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0fdf4;
+            color: #333;
+            margin: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #2e7d32;
+            margin-bottom: 30px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 10px 16px;
+            background-color: #388e3c;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .case-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            box-shadow: 0 0 10px rgba(46, 125, 50, 0.2);
+        }
+
+        .case-table th, .case-table td {
+            padding: 12px 15px;
+            border: 1px solid #c8e6c9;
+            text-align: left;
+        }
+
+        .case-table th {
+            background-color: #a5d6a7;
+            color: #1b5e20;
+        }
+
+        .case-table tr:nth-child(even) {
+            background-color: #e8f5e9;
+        }
+
+        .case-table tr:hover {
+            background-color: #c8e6c9;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h2>🔍 Search Results for "{{ query }}"</h2>
+
+    <a href="{{ url_for('dashboard') }}" class="back-button">🏠 Back to Dashboard</a>
+
+    {% if results %}
+    <table class="case-table">
+        <thead>
+            <tr>
+                <th>Case Name</th>
+                <th>Case Type</th>
+                <th>Case Number</th>
+                <th>Lawyer Assigned</th>
+                <th>Status</th>
+                <th>Next Hearing</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for case in results %}
+            <tr onclick="window.location='{{ url_for('movement_history', case_number=case.case_number) }}';">
+                <td>{{ case.case_name }}</td>
+                <td>{{ case.case_type }}</td>
+                <td>{{ case.case_number }}</td>
+                <td>{{ case.lawyer_assigned }}</td>
+                <td>{{ case.status }}</td>
+                <td>{{ case.next_hearing }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+         <p style="text-align:center; color:#888;">No cases found matching your search.</p>
+    {% endif %}
+</body>
+</html>
+
+

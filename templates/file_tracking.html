@@ -1,0 +1,19 @@
+<h2>File Tracking Dashboard</h2>
+<table border="1">
+    <tr>
+        <th>Case Number</th>
+        <th>Case Title</th>
+        <th>Current Holder</th>
+        <th>Last Moved</th>
+        <th>View History</th>
+    </tr>
+    {% for item in tracking %}
+    <tr>
+        <td>{{ item.case_number }}</td>
+        <td>{{ item.case_title }}</td>
+        <td>{{ item.current_holder }}</td>
+        <td>{{ item.last_moved }}</td>
+        <td><a href="{{ url_for('movement_history', case_number=item.case_number) }}">View History</a></td>
+    </tr>
+    {% endfor %}
+</table>

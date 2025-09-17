@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movement History</title>
+</head>
+<body>
+    <h2>Movement History for Case {{ case_number }}</h2>
+    <table border="1">
+        <tr>
+            <th>From</th>
+            <th>To</th>
+            <th>Remarks</th>
+            <th>Date</th>
+        </tr>
+        {% for move in movements %}
+        <tr>
+            <td>{{ move.from_dept }}</td>
+            <td>{{ move.to_dept }}</td>
+            <td>{{ move.remarks }}</td>
+            <td>{{ move.moved_at }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
