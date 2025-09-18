@@ -1,0 +1,24 @@
+<!-- templates/edit_case.html -->
+<h2>Edit Case: {{ case[1] }}</h2>
+
+<div style="max-width: 600px; margin: 40px auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px;">
+    <h2 style="text-align: center;">Edit Case: {{ case[1] }}</h2>
+
+    <form method="POST" style="display: flex; flex-direction: column; gap: 15px;">
+        <label>Status:</label>
+        <input type="text" name="status" value="{{ case[5] }}" style="padding: 8px; font-size: 16px;">
+
+        <label>Next Hearing:</label>
+        <input type="date" name="next_hearing" value="{{ case[7] }}" style="padding: 8px; font-size: 16px;">
+
+        <label>Lawyer Assigned:</label>
+        <input type="text" name="lawyer" value="{{ case[3] }}" style="padding: 8px; font-size: 16px;">
+
+        <button type="submit" style="padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px;">
+            Update Case
+        </button>
+    </form>
+</div>
+
+
+

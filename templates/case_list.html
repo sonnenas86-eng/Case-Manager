@@ -130,13 +130,13 @@
 </nav>
 <body>
      <h2>📄 Full Case List{% if filter %} – {{ filter }}{% endif %}</h2>
-   
+    
      <!-- Search Bar -->
     <form method="GET" action="{{ url_for('search_case') }}">
         <input type="text" name="query" placeholder="Search case..." required>
         <button type="submit">Search</button>
     </form>
-
+   
     <!-- Filter Dropdown -->
     <form method="GET" action="{{ url_for('filter_by_status', status='Pending') }}">
      <form method="GET">

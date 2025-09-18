@@ -1,25 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Movement History</title>
+    <title>Case History</title>
 </head>
 <body>
-    <h2>Movement History for Case {{ case_number }}</h2>
-    <table border="1">
-        <tr>
-            <th>From</th>
-            <th>To</th>
-            <th>Remarks</th>
-            <th>Date</th>
-        </tr>
-        {% for move in movements %}
-        <tr>
-            <td>{{ move.from_dept }}</td>
-            <td>{{ move.to_dept }}</td>
-            <td>{{ move.remarks }}</td>
-            <td>{{ move.moved_at }}</td>
-        </tr>
-        {% endfor %}
+    <h2 style="text-align: center; color: #2e7d32; margin-top: 30px;">📄 Case Details: {{ case[1] }}</h2>
+
+    <div style="width: 85%; margin: 20px auto; padding: 20px; background-color: #e8f5e9; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); font-family: 'Segoe UI', sans-serif;">
+        <p><strong>Case Type:</strong> {{ case[2] }}</p>
+        <p><strong>Case Number:</strong> {{ case[3] }}</p>
+        <p><strong>Lawyer Assigned:</strong> {{ case[4] }}</p>
+        <p><strong>Status:</strong>
+            <span style="padding: 4px 8px; border-radius: 4px; background-color:
+                {% if case[5] == 'Pending' %}#a5d6a7
+                {% elif case[5] == 'Trial Ongoing' %}#66bb6a
+                {% elif case[5] == 'Adjourned' %}#81c784
+                {% elif case[5] == 'Sentenced' %}#388e3c
+                {% elif case[5] == 'Pending Hearing' %}#c8e6c9
+                {% else %}#e0e0e0{% endif %};
+                color: #1b5e20;">
+                {{ case[5] }}
+            </span>
+        </p>
+        <p><strong>Next Hearing:</strong> {{ case[6] }}</p>
+        <p><strong>Court:</strong> {{ case[9] }}</p>
+        <p><strong>Presiding Judge:</strong> {{ case[10] }}</p>
+        <p><strong>Case Summary:</strong> {{ case[11] }}</p>
+    </div>
+
+    <h3 style="text-align: center; margin-top: 40px; color: #388e3c;">📜 Movement History</h3>
+
+    <table style="width: 85%; margin: 0 auto; border-collapse: collapse; font-family: 'Segoe UI', sans-serif;">
+        <thead>
+            <tr style="background-color: #c8e6c9;">
+                <th style="padding: 10px;">From</th>
+                <th style="padding: 10px;">To</th>
+                <th style="padding: 10px;">Remarks</th>
+                <th style="padding: 10px;">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for move in movements %}
+            <tr style="background-color: {% if loop.index0 % 2 == 0 %}#ffffff{% else %}#f1f8e9{% endif %};">
+                <td style="padding: 10px;">{{ move[0] }}</td>
+                <td style="padding: 10px;">{{ move[1] }}</td>
+                <td style="padding: 10px;">{{ move[2] }}</td>
+                <td style="padding: 10px;">{{ move[3] }}</td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 20px; color: #757575;">No movement history recorded for this case.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
-</body>
-</html>
+
+    {% if session['role'] == 'admin' %}
+    <h3 style="text-align: center; margin-top: 40px; color: #2e7d32;">➕ Add Movement Entry</h3>
+
+    <form method="POST" action="{{ url_for('add_movement', case_number=case[3]) }}" style="width: 85%; margin: 0 auto;">
+        <div style="margin-bottom: 10px;">
+            <label>From Department:</label>
+            <input type="text" name="from_dept" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+        <label>To Department:</label>
+        <input type="text" name="to_dept" required style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <label>Remarks:</label>
+            <textarea name="remarks" rows="3" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;"></textarea>
+        </div>
+        <button type="submit" style="padding: 10px 20px; background-color: #43a047; color: white; border: none; border-radius: 6px;">
+            Submit Movement
+        </button>
+    </form>
+    {% endif %}
+
+    <div style="text-align: center; margin: 30px;">
+        <a href="{{ url_for('view_cases') }}" style="padding: 10px 20px; background-color: #6c757d; color: white; text-decoration: none; border-radius: 6px;">
+            ← Back to Case List
+        </a>
+    </div>
+
+

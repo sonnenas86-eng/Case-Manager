@@ -1,0 +1,60 @@
+<h2 style="text-align: center;">📄 {{ title }}</h2>
+
+{% if selected_lawyer %}
+    <p style="text-align: center;"><strong>{{ selected_lawyer }}</strong> has {{ case_count }} case(s).</p>
+{% endif %}
+
+<form method="POST" action="/edit-case-selection">
+    <table style="width: 95%; margin: 20px auto; border-collapse: collapse; font-family: 'Segoe UI', sans-serif; box-shadow: 0 0 10px rgba(0,0,0,0.1);">
+        <thead>
+            <tr style="background-color: #2e7d32; color: white;">
+                <th style="padding: 12px;">Select</th>
+                <th style="padding: 12px;">Case Name</th>
+                <th style="padding: 12px;">Case Type</th>
+                <th style="padding: 12px;">Case Number</th>
+                <th style="padding: 12px;">Lawyer Assigned</th>
+                <th style="padding: 12px;">Status</th>
+                <th style="padding: 12px;">Next Hearing</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for case in cases %}
+            <tr style="background-color: {% if loop.index0 % 2 == 0 %}#e8f5e9{% else %}#ffffff{% endif %}; border-bottom: 1px solid #c8e6c9;">
+                <td style="padding: 10px;"><input type="radio" name="selected_case" value="{{ case[0] }}"></td>
+                <td style="padding: 10px;">{{ case[1] }}</td>
+                <td style="padding: 10px;">{{ case[2] }}</td>
+                <td style="padding: 10px;">{{ case[3] }}</td>
+                <td style="padding: 10px;">{{ case[4] }}</td>
+                <td style="padding: 10px;">
+                    <span style="padding: 4px 8px; border-radius: 4px; background-color:
+                        {% if case[5] == 'Pending' %}#a5d6a7
+                        {% elif case[5] == 'Trial Ongoing' %}#66bb6a
+                        {% elif case[5] == 'Adjourned' %}#81c784
+                        {% elif case[5] == 'Sentenced' %}#388e3c
+                        {% elif case[5] == 'Pending Hearing' %}#c8e6c9
+                        {% else %}#e0e0e0{% endif %};
+                        color: #1b5e20;">
+                        {{ case[5] }}
+                    </span>
+                </td>
+                <td style="padding: 10px;">{{ case[6] if case[6] else '—' }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% if session['role'] == 'admin' %}
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 6px;">
+                Edit Selected Case
+            </button>
+        </div>
+    {% endif %}
+</form>
+
+
+
+
+
+
+          

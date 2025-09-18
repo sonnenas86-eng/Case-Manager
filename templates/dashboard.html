@@ -169,14 +169,32 @@
     </div>
 </div>
 
-<div class="action-row">
-    <form action="{{ url_for('search_case') }}" method="GET" class="search-form">
-        <input type="text" name="query" placeholder="🔍 Search case..." required>
-        <button type="submit">Search</button>
-    </form>
+<div style="display: flex; justify-content: space-between; align-items: center; margin: 30px 0;">
+    <div style="flex-grow: 1;">
+        <form method="POST" action="/filter" style="display: flex; gap: 10px; align-items: center;">
+            <label for="lawyer" style="font-weight: bold;"> Select Lawyer:</label>
+            <select name="lawyer" id="lawyer" style="padding: 8px; font-size: 16px; border-radius: 6px; border: 1px solid #ccc;">
+                {% for lawyer in lawyers %}
+                    <option value="{{ lawyer }}">{{ lawyer }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit" style="padding: 10px 16px; background-color: #28a745; color: white; border: none; border-radius: 6px;">
+                Filter
+            </button>
+        </form>
+    </div>
 
-    <a href="{{ url_for('case_list') }}" class="view-link">📄 View Full Case List</a>
+    <div>
+        <a href="{{ url_for('case_list') }}" class="view-link" style="padding: 10px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 6px;">
+            📄 View Full Case List
+        </a>
+    </div>
 </div>
+
+
+
+
+  
 
 </body>
 </html>

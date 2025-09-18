@@ -84,7 +84,21 @@
         <label for="next_hearing">Next Hearing Date:</label>
         <input type="date" name="next_hearing">
 
-        <button type="submit">Register Case</button>
+        <label for="court">Court:</label>
+        <input type="text" name="court" required style="width: 100%; padding: 8px;">
+
+        <label for="presiding_judge">Presiding Judge:</label>
+        <input type="text" name="presiding_judge" required style="width: 100%; padding: 8px;">
+
+        <label for="case_summary">Case Summary:</label>
+        <textarea name="case_summary" rows="4" style="width: 100%; padding: 8px;" required></textarea>
+
+        <!-- ✅ Button moved to the bottom -->
+        <div style="text-align: center; margin-top: 20px;">
+            <button type="submit" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; border-radius: 6px;">
+                Register Case
+            </button>
+        </div>
     </form>
 </body>
 </html>
