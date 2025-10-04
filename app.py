@@ -55,6 +55,7 @@ def home():
     # Otherwise, show login page
     return redirect(url_for('login'))
 
+
 @app.route('/dashboard', methods=['GET', 'POST'])
 def dashboard():
     if 'user' in session:
@@ -67,7 +68,8 @@ def dashboard():
         sentenced = conn.execute("SELECT COUNT(*) FROM cases WHERE status LIKE '%Sentenced%'").fetchone()[0]
         adjourned = conn.execute("SELECT COUNT(*) FROM cases WHERE status LIKE '%Adjourned%'").fetchone()[0]
         trial = conn.execute("SELECT COUNT(*) FROM cases WHERE status LIKE '%Trial Ongoing%'").fetchone()[0]
-
+        criminal = conn.execute("SELECT COUNT(*) FROM cases WHERE case_type LIKE '%Criminal%'").fetchone()[0]
+        civil = conn.execute("SELECT COUNT(*) FROM cases WHERE case_type LIKE '%Civil%'").fetchone()[0]
         # Lawyer list for dropdown
         cursor.execute("SELECT DISTINCT lawyer_assigned FROM cases WHERE lawyer_assigned IS NOT NULL")
         lawyers = [row[0] for row in cursor.fetchall()]

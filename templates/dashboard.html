@@ -134,9 +134,7 @@
     </style>
 </head>
 <body>
-    <img src="{{ url_for('static', filename='logo1.png') }}" alt="Logo" style="width:80px; margin-bottom:20px;">
-   <p style="color:#888;">Logged in as: {{ session['user'] }}</p>
-
+    
     <h1>Welcome to the Case Management Dashboard</h1>
 
     <div class="stats-container">
@@ -155,7 +153,7 @@
         <h2>{{ sentenced }}</h2>
         <p>Sentenced Cases</p>
     </a>
-
+    
     <a href="{{ url_for('filter_by_status', status='Adjourned') }}" class="stat-box adjourned">
         <h2>{{ adjourned }}</h2>
         <p>Adjourned Cases</p>

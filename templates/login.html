@@ -12,7 +12,7 @@
 
         .state {
             color: #333;
-            font-size: 20px;
+            font-size: 35px;
             margin-top: -10px;
             margin-bottom: 20px;
              font-weight: bold;
@@ -30,8 +30,8 @@
         }
 
         .logo {
-            width: 120px;
-            margin-bottom: 20px;
+            width: 800px;
+            margin-bottom: 10px;
         }
 
         h1 {
@@ -42,7 +42,7 @@
         p.description {
             color: #666;
             font-size: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 15px;
         }
 
         form {
@@ -79,24 +79,25 @@
 
 <div class="container">
     <!-- Logo -->
-    <img src="{{ url_for('static', filename='logo1.png') }}" alt="Ministry Logo" class="logo">
+    <img src="{{ url_for('static', filename='logo9.png') }}" alt="Ministry Logo" class="logo">
 
     <!-- Ministry Name -->
-    <h1>Ministry of Attorney General, Commissioner of Justice and Public Order</h1>
-    <h2 class="state">BENUE STATE</h2>
+    <h1>A CASE MANAGEMENT SYSTEM OF ALL COURT CASES IN</h1>
+    <h2 class="state">NASARAWA STATE</h2>
 
     <!-- Description -->
-    <p class="description">Secure access to legal case records and file tracking system</p>
-
+    <p class="description">Secure access to legal case records</p>
+    <p class="description">samun damar shiga bayanan shari’a mai tsaro</p>
     <!-- Login Form -->
     <form method="POST">
         <input type="text" name="username" placeholder="Username" required><br>
         <input type="password" name="password" placeholder="Password" required><br>
         <input type="submit" value="Login">
     </form>
-</div>
+
+    </div>
     <div class="developer-credit">
-        <p>Developed by Sonnen Naswem | ICT Director | GashResearch Consult Ltd</p>
+        <p>Developed by Sonnen Naswem GashResearch Consult Ltd</p>
     </div>
 
 </body>
